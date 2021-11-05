@@ -1,22 +1,27 @@
+
 export const getStaticProps = async () => {
   const res = await fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=e5aa86bd0e914921add0f3dadb0a99ad');
   const data = await res.json();
+  const datao=data.articles[0];
+  //const myjson=JSON.parse(data)
+  console.log(data);
+  //console.log("Helllllllllllllllllllllllllllllloooooooooooooooooooooooooooooo",datao.title);
 
   return {
-    props: { ninjas: data }
+    props: { datao: datao }
   }
 }
 
-const Ninjas = ({ ninjas }) => {
-  console.log(ninjas)
+const App = ({ datao }) => {
+  console.log(datao)
 
   return (
     <div>
-      <h1>All Ninjas</h1>
-      {ninjas.map(ninja => (
-        <div key={ninja.id}>
+      
+      {datao.map(dat => (
+        <div key={dat.author}>
           <a >
-            <h3>{ ninja.name }</h3>
+            <h3>{ dat.title }</h3>
           </a>
         </div>
       ))}
@@ -24,4 +29,4 @@ const Ninjas = ({ ninjas }) => {
   );
 }
  
-export default Ninjas;
+export default App;
