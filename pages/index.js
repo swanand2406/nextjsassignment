@@ -14,6 +14,7 @@ function App({ data }) {
     <ul>
       {data.map((key) => (
         <li>{key.title}</li>
+        
       ))}
     </ul>
   )
