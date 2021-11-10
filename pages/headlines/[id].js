@@ -37,12 +37,12 @@ const Details = ({ articles, id }) => {
     console.log("data", articles)
     console.log("id", id)
     return (
-        <div >
+        <div  >
             {articles.map((article, id) => (
                 <div className={styles.innercontainer} key={id}>
                     <h2>{article.title}</h2>
                     <p>{article.content}</p>
-                    <p>{article.description}</p>
+                    <p dangerouslySetInnerHTML={{__html:article.description}}></p>
                     <img className={styles.innerimg} src={article.urlToImage} />
                 </div>
             ))}
