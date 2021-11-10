@@ -1,6 +1,6 @@
-import Navbar from "../Components/Navbar";
+import Navbar from "./Navbar";
 
-import Footer from "../Components/Footer"
+import Footer from "./Footer"
 
 
 
@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
 
             <Navbar />
 
-            { children }
+            {children}
 
             <Footer />
 
@@ -22,6 +22,6 @@ const Layout = ({ children }) => {
 
 }
 
- 
+
 
 export default Layout;

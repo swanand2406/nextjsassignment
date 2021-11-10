@@ -13,8 +13,8 @@ function App({ articles }) {
       </Head>
       <div className={styles.row}>
         <h1><center>Top Headlines</center></h1>
-       
-        
+
+
         <div className={styles.card}>
           {articles.map((article, index) => (
             <Link href={'/headlines/' + article.title} key={article.title} passHref >
@@ -36,7 +36,7 @@ function App({ articles }) {
 export const getServerSideProps = async pageContext => {
 
   const apiResponse = await fetch(
-    'https://newsapi.org/v2/top-headlines?country=in&apiKey=e5aa86bd0e914921add0f3dadb0a99ad',
+    process.env.NEXT_PUBLIC_API
   );
   const response = await apiResponse.json();
   const { articles } = response;

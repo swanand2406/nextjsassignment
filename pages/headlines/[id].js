@@ -1,7 +1,9 @@
 import styles from '../../styles/Home.module.css'
 
 export const getStaticPaths = async () => {
-    const apiResponse = await fetch('https://newsapi.org/v2/top-headlines?country=in&apiKey=e5aa86bd0e914921add0f3dadb0a99ad');
+    const apiResponse = await fetch(
+        process.env.NEXT_PUBLIC_API
+    );
     const response = await apiResponse.json();
     const { articles } = response;
     console.log(articles)
@@ -16,7 +18,11 @@ export const getStaticPaths = async () => {
 }
 export const getStaticProps = async (pageContext) => {
     const id = encodeURI(pageContext.params.id);
-    const response = await fetch(`https://newsapi.org/v2/everything?apiKey=e5aa86bd0e914921add0f3dadb0a99ad&qInTitle=${id}`)
+
+    const response = await fetch(
+        `${process.env.NEXT_PUBLIC_URL}?apikey=${process.env.NEXT_PUBLIC_API_KEY}&qInTitle==${id}`
+    )
+
     const singleData = await response.json();
     const { articles } = singleData;
     console.log(articles)

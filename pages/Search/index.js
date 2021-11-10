@@ -10,7 +10,8 @@ function Searchbox() {
     const [newsData, setNewsData] = useState([]);
 
     const getAllData = async () => {
-        const url = `https://newsapi.org/v2/everything?apiKey=069bc61f2f154e118cce721f4e1a8520&qInTitle=${searchValue}`;
+        const url = `${process.env.NEXT_PUBLIC_URL}?apikey=${process.env.NEXT_PUBLIC_API_KEY}&qInTitle=${searchValue}`
+        console.log(url)
         const response = await fetch(url);
         const resJon = await response.json();
         console.log(resJon.articles);
@@ -42,7 +43,7 @@ function Searchbox() {
             <div className={styles.row}>
                 <div className={styles.container}>
                     {newsData.map((news) => (
-                        <> 
+                        <>
                             <div className="col-sm-4 mx-auto">
                                 <div className={styles.card}>
                                     <h5 className={styles.cardText}>{news.title} </h5>
