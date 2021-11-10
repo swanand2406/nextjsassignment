@@ -1,0 +1,200 @@
+import Image from 'next/image'
+import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+function App({ articles }) {
+  return (
+    <ul>
+      {articles.map((article, index) => (
+
+        <Link href={'/headlines/' + article.title} key={article.title}>
+
+          {/* <div className={styles.single}>
+            <div class="card" >
+              {!!article.content && <img src={article.urlToImage} width={570} height={407} />}
+              <div class="card-body">
+                <h5 class="card-title">{article.content}</h5>
+                <p class="card-text">{article.publishedAt}</p>
+
+              </div>
+            </div> */}
+          <div className={styles.single}>
+            <div class="w-full sm:w-1/2 md:w-1/3 flex flex-col p-3">
+              <div class="bg-white rounded-lg shadow-lg overflow-hidden flex-1 flex flex-col">
+                <div class="bg-cover h-48" >
+                  <div class="p-4 flex-1 flex flex-col" >
+                    <h3 class="mb-4 text-2xl">{article.content}</h3>
+                    {!!article.content && <img src={article.urlToImage} width={570} height={407} />}
+                    
+                    <div class="mb-4 text-grey-darker text-sm flex-1">
+                      <p>{article.publishedAt}</p>
+                    </div>
+                    <a href="#" class="border-t border-grey-light pt-2 text-xs text-grey hover:text-red uppercase no-underline tracking-wide"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </Link>))}
+    </ul>
+  )
+}
+
+export const getServerSideProps = async pageContext => {
+
+  const apiResponse = await fetch(
+    'https://newsapi.org/v2/top-headlines?country=in&apiKey=e5aa86bd0e914921add0f3dadb0a99ad',
+  );
+  const response = await apiResponse.json();
+  const { articles } = response;
+  console.log(articles)
+  return {
+    props: {
+      articles,
+
+    },
+  };
+
+};
+export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+////CSSSSSSSSSSSS
+.container {
+  padding: 0 2rem;
+}
+
+.main {
+  min-height: 100vh;
+  padding: 4rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  flex: 1;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.title a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+}
+
+.title {
+  margin: 0;
+  line-height: 1.15;
+  font-size: 4rem;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.description {
+  margin: 4rem 0;
+  line-height: 1.5;
+  font-size: 1.5rem;
+}
+
+.code {
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+    Bitstream Vera Sans Mono, Courier New, monospace;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+.card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 300px;
+}
+
+.card:hover,
+.card:focus,
+.card:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+}
+
+.logo {
+  height: 1em;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.single{
+  padding: 2px 16px;
+
+  display: grid;
+
+  margin: 20px 10px;
+  border-left: 8px solid #fff;
+}
+.single:hover{
+  border-left: 8px solid #4979ff;
+} */
